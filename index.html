@@ -128,7 +128,7 @@
       <h2 class="vtitle" data-t="vtitle">1001 个 1001</h2>
       <p class="vtext" data-t="vtext">一千零一，是《一千零一夜》里永不枯竭的讲述。当一千零一个这样的收藏汇聚，便是一部关于人类痴迷、热爱与记忆的百科全书。</p>
       <div class="constel" id="constel" aria-hidden="true"></div>
-      <p class="tally"><b>4</b> <span data-t="tally">座已建成 · 还有 997 座在路上</span></p>
+      <p class="tally"><b>5</b> <span data-t="tally">座已建成 · 还有 996 座在路上</span></p>
     </section>
   </main>
 
@@ -148,6 +148,8 @@ const SITES = [
     ttl:{zh:"1001 件艺术", en:"1001 Artworks"}, sub:{zh:"人类文明的一千零一件瑰宝", en:"A thousand and one human masterpieces"}, cnt:{zh:"1800+ 件在展", en:"1800+ on view"} },
   { key:"jazz",   url:"https://xujiann.github.io/1001jazz/",   ico:"🎷", c:"#4aa9a3",
     ttl:{zh:"1001 张爵士", en:"1001 Jazz Albums"}, sub:{zh:"不可错过的一千零一张爵士专辑", en:"A thousand and one jazz records"}, cnt:{zh:"1001 张唱片", en:"1001 albums"} },
+  { key:"classical", url:"https://xujiann.github.io/1001classical/", ico:"🎻", c:"#c9a24a",
+    ttl:{zh:"1001 张古典", en:"1001 Classical"}, sub:{zh:"此生必听的一千零一张古典录音", en:"A thousand and one classical recordings"}, cnt:{zh:"100+ 张录音", en:"100+ recordings"} },
 ];
 
 const T = {
@@ -158,7 +160,7 @@ const T = {
   vtitle:{zh:"1001 个 1001",en:"A Thousand and One 1001s"},
   vtext:{zh:"一千零一，是《一千零一夜》里永不枯竭的讲述。当一千零一个这样的收藏汇聚，便是一部关于人类痴迷、热爱与记忆的百科全书。",
          en:"One thousand and one — the number of endless tales in the Arabian Nights. Gather a thousand and one such collections, and you hold an encyclopedia of human passion, love, and memory."},
-  tally:{zh:"座已建成 · 还有 997 座在路上",en:"built · 997 more on the way"},
+  tally:{zh:"座已建成 · 还有 996 座在路上",en:"built · 996 more on the way"},
   quote:{zh:"“我愿把整个世界，收进一千零一个抽屉里。”",en:"“I would tuck the whole world into a thousand and one drawers.”"},
   foot:{zh:'1001 × 1001 · 由 <span style="color:var(--muted)">xujiann</span> 手工建造',
         en:'1001 × 1001 · handcrafted by <span style="color:var(--muted)">xujiann</span>'},
@@ -181,7 +183,7 @@ function renderCards(){
     </a>`).join("");
 }
 function renderConstel(){
-  const total = 53*11, on = new Set([0,1,2,3].map(k=>[7, 130, 300, 470][k]));
+  const total = 53*11, on = new Set([7, 130, 300, 470, 555]);
   let h="";
   for(let i=0;i<total;i++) h+=`<span class="cell${on.has(i)?" on":""}"></span>`;
   document.getElementById("constel").innerHTML=h;
