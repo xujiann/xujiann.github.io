@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>1001 × 1001 — 万物收藏 · The Grand Index of 1001s</title>
+<meta name="description" content="1001 个 1001：一座不断生长的收藏之库。书籍、电影、艺术、爵士乐——每一个都是一份 1001 件的珍藏。An ever-growing vault of 1001 collections, each holding 1001 treasures.">
+<meta name="theme-color" content="#0d0b14">
+<meta property="og:title" content="1001 × 1001 — 万物收藏">
+<meta property="og:description" content="一座不断生长的收藏之库。目前已完成 4 个，终将抵达 1001 个 1001。">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80' font-family='Georgia'>❖</text></svg>">
+<style>
+  :root{
+    --bg:#0d0b14;
+    --bg2:#141020;
+    --ink:#f4f0ea;
+    --muted:#a09aad;
+    --faint:#5a5468;
+    --line:rgba(255,255,255,.10);
+    --gold:#d9b26a;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Noto Serif SC",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    min-height:100vh;
+  }
+  /* ambient background */
+  .aura{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(60vw 60vw at 15% -10%, rgba(217,178,106,.10), transparent 60%),
+      radial-gradient(55vw 55vw at 95% 10%, rgba(120,110,220,.12), transparent 60%),
+      radial-gradient(70vw 70vw at 50% 120%, rgba(200,80,120,.10), transparent 60%),
+      var(--bg);
+  }
+  .grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 24px}
+
+  /* top bar */
+  .top{display:flex;justify-content:space-between;align-items:center;padding:26px 0 0}
+  .mark{font-family:var(--serif);font-size:19px;letter-spacing:.02em;color:var(--ink);display:flex;align-items:center;gap:9px}
+  .mark .glyph{color:var(--gold)}
+  .langbtn{background:transparent;border:1px solid var(--line);color:var(--muted);
+    font:inherit;font-size:13px;padding:6px 13px;border-radius:100px;cursor:pointer;transition:.25s;letter-spacing:.03em}
+  .langbtn:hover{color:var(--ink);border-color:rgba(255,255,255,.3)}
+
+  /* hero */
+  .hero{text-align:center;padding:min(15vh,120px) 0 46px}
+  .eyebrow{font-size:12.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-bottom:26px;font-weight:600}
+  .title{font-family:var(--serif);font-weight:400;line-height:.98;
+    font-size:clamp(56px,15vw,150px);letter-spacing:-.01em}
+  .title .x{color:var(--faint);font-style:italic;padding:0 .12em;font-size:.62em;vertical-align:.12em}
+  .title .n{background:linear-gradient(180deg,#fff, #d9b26a 130%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .lede{max-width:560px;margin:30px auto 0;color:var(--muted);font-size:clamp(15px,2.2vw,18px)}
+  .lede b{color:var(--ink);font-weight:600}
+
+  /* collections grid */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:20px 0 8px}
+  @media(max-width:640px){.grid{grid-template-columns:1fr}}
+  .card{position:relative;display:block;text-decoration:none;color:inherit;overflow:hidden;
+    border:1px solid var(--line);border-radius:20px;padding:30px 30px 28px;
+    background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
+    transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .4s;isolation:isolate}
+  .card::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .4s;
+    background:radial-gradient(120% 120% at 100% 0,var(--c,transparent),transparent 55%)}
+  .card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.28);box-shadow:0 24px 50px -24px rgba(0,0,0,.7)}
+  .card:hover::before{opacity:.28}
+  .card:hover .go{transform:translate(3px,-3px);opacity:1}
+  .card:hover .ico{transform:scale(1.06) rotate(-3deg)}
+  .card .row{display:flex;justify-content:space-between;align-items:flex-start}
+  .ico{font-size:34px;line-height:1;transition:transform .45s cubic-bezier(.2,.7,.2,1);filter:saturate(1.1)}
+  .go{opacity:.35;transition:.35s;color:var(--muted)}
+  .idx{font-family:var(--serif);font-size:13px;color:var(--faint);letter-spacing:.14em;margin-top:22px}
+  .cardttl{font-family:var(--serif);font-size:27px;line-height:1.15;margin-top:5px}
+  .cardsub{color:var(--muted);font-size:14px;margin-top:8px}
+  .count{margin-top:16px;font-size:12.5px;letter-spacing:.05em;color:var(--c-ink,var(--gold));display:inline-flex;align-items:center;gap:7px}
+  .count .dot{width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 10px currentColor}
+
+  /* vision / progress */
+  .vision{margin:64px 0 30px;text-align:center;border-top:1px solid var(--line);padding-top:56px}
+  .vtitle{font-family:var(--serif);font-size:clamp(24px,4vw,34px);font-weight:400}
+  .vtext{max-width:600px;margin:16px auto 0;color:var(--muted);font-size:15px}
+  .constel{--cols:53;display:grid;grid-template-columns:repeat(var(--cols),1fr);gap:5px;
+    max-width:640px;margin:38px auto 0}
+  @media(max-width:640px){.constel{--cols:29}}
+  .cell{aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.055)}
+  .cell.on{background:var(--gold);box-shadow:0 0 8px var(--gold);animation:pulse 3s ease-in-out infinite}
+  .cell.on:nth-child(2){animation-delay:.5s}.cell.on:nth-child(3){animation-delay:1s}.cell.on:nth-child(4){animation-delay:1.5s}
+  @keyframes pulse{0%,100%{opacity:.85}50%{opacity:.35}}
+  .tally{margin-top:30px;font-family:var(--serif);color:var(--muted);font-size:15px}
+  .tally b{color:var(--gold);font-size:20px}
+
+  footer{text-align:center;color:var(--faint);font-size:12.5px;padding:56px 0 40px;letter-spacing:.03em}
+  footer .q{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:14.5px;max-width:520px;margin:0 auto 18px;line-height:1.7}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="aura"></div>
+<div class="grain"></div>
+
+<div class="wrap">
+  <div class="top">
+    <div class="mark"><span class="glyph">❖</span><span data-t="mark">万物收藏</span></div>
+    <button class="langbtn" id="lang" aria-label="Switch language">EN</button>
+  </div>
+
+  <header class="hero">
+    <div class="eyebrow" data-t="eyebrow">一座不断生长的收藏之库</div>
+    <h1 class="title"><span class="n">1001</span><span class="x">×</span><span class="n">1001</span></h1>
+    <p class="lede" data-t="lede">终有一天，这里将收藏 <b>1001 个 1001</b>——每一个都是一份一千零一件的珍藏。目前，四扇门已经打开。</p>
+  </header>
+
+  <main>
+    <div class="grid" id="grid"></div>
+
+    <section class="vision">
+      <h2 class="vtitle" data-t="vtitle">1001 个 1001</h2>
+      <p class="vtext" data-t="vtext">一千零一，是《一千零一夜》里永不枯竭的讲述。当一千零一个这样的收藏汇聚，便是一部关于人类痴迷、热爱与记忆的百科全书。</p>
+      <div class="constel" id="constel" aria-hidden="true"></div>
+      <p class="tally"><b>4</b> <span data-t="tally">座已建成 · 还有 997 座在路上</span></p>
+    </section>
+  </main>
+
+  <footer>
+    <p class="q" data-t="quote">“我愿把整个世界，收进一千零一个抽屉里。”</p>
+    <div data-t="foot">1001 × 1001 · 由 <span style="color:var(--muted)">xujiann</span> 手工建造</div>
+  </footer>
+</div>
+
+<script>
+const SITES = [
+  { key:"books",  url:"https://xujiann.github.io/1001books/",  ico:"📚", c:"#c98b3a",
+    ttl:{zh:"1001 本书",  en:"1001 Books"},  sub:{zh:"人生必读的一千零一本经典", en:"A thousand and one books to read"}, cnt:{zh:"1001 本典籍", en:"1001 volumes"} },
+  { key:"movies", url:"https://xujiann.github.io/1001movies/", ico:"🎬", c:"#c0506e",
+    ttl:{zh:"1001 部电影", en:"1001 Movies"}, sub:{zh:"死前必看的一千零一部影片", en:"A thousand and one films to see"}, cnt:{zh:"1001 部影片", en:"1001 films"} },
+  { key:"art",    url:"https://xujiann.github.io/1001art/",    ico:"🖼️", c:"#8f7ad6",
+    ttl:{zh:"1001 件艺术", en:"1001 Artworks"}, sub:{zh:"人类文明的一千零一件瑰宝", en:"A thousand and one human masterpieces"}, cnt:{zh:"1800+ 件在展", en:"1800+ on view"} },
+  { key:"jazz",   url:"https://xujiann.github.io/1001jazz/",   ico:"🎷", c:"#4aa9a3",
+    ttl:{zh:"1001 张爵士", en:"1001 Jazz Albums"}, sub:{zh:"不可错过的一千零一张爵士专辑", en:"A thousand and one jazz records"}, cnt:{zh:"1001 张唱片", en:"1001 albums"} },
+];
+
+const T = {
+  mark:{zh:"万物收藏",en:"The Grand Index"},
+  eyebrow:{zh:"一座不断生长的收藏之库",en:"An ever-growing vault of collections"},
+  lede:{zh:'终有一天，这里将收藏 <b>1001 个 1001</b>——每一个都是一份一千零一件的珍藏。目前，四扇门已经打开。',
+        en:'One day this will hold <b>1001 collections of 1001</b> — each a treasury of a thousand and one. For now, four doors stand open.'},
+  vtitle:{zh:"1001 个 1001",en:"A Thousand and One 1001s"},
+  vtext:{zh:"一千零一，是《一千零一夜》里永不枯竭的讲述。当一千零一个这样的收藏汇聚，便是一部关于人类痴迷、热爱与记忆的百科全书。",
+         en:"One thousand and one — the number of endless tales in the Arabian Nights. Gather a thousand and one such collections, and you hold an encyclopedia of human passion, love, and memory."},
+  tally:{zh:"座已建成 · 还有 997 座在路上",en:"built · 997 more on the way"},
+  quote:{zh:"“我愿把整个世界，收进一千零一个抽屉里。”",en:"“I would tuck the whole world into a thousand and one drawers.”"},
+  foot:{zh:'1001 × 1001 · 由 <span style="color:var(--muted)">xujiann</span> 手工建造',
+        en:'1001 × 1001 · handcrafted by <span style="color:var(--muted)">xujiann</span>'},
+  go:{zh:"进入 →",en:"Enter →"},
+};
+
+let lang = (navigator.language||"").toLowerCase().startsWith("zh") ? "zh" : (localStorage.getItem("l1001")||"zh");
+
+function renderCards(){
+  document.getElementById("grid").innerHTML = SITES.map((s,i)=>`
+    <a class="card" href="${s.url}" style="--c:${s.c}33;--c-ink:${s.c}">
+      <div class="row">
+        <span class="ico">${s.ico}</span>
+        <span class="go">↗</span>
+      </div>
+      <div class="idx">${String(i+1).padStart(2,"0")} / 1001</div>
+      <div class="cardttl">${s.ttl[lang]}</div>
+      <div class="cardsub">${s.sub[lang]}</div>
+      <div class="count"><span class="dot"></span>${s.cnt[lang]}</div>
+    </a>`).join("");
+}
+function renderConstel(){
+  const total = 53*11, on = new Set([0,1,2,3].map(k=>[7, 130, 300, 470][k]));
+  let h="";
+  for(let i=0;i<total;i++) h+=`<span class="cell${on.has(i)?" on":""}"></span>`;
+  document.getElementById("constel").innerHTML=h;
+}
+function applyLang(){
+  document.documentElement.lang = lang;
+  document.getElementById("lang").textContent = lang==="zh" ? "EN" : "中";
+  document.querySelectorAll("[data-t]").forEach(el=>{
+    const v = T[el.dataset.t]; if(v) el.innerHTML = v[lang];
+  });
+  renderCards();
+}
+document.getElementById("lang").onclick=()=>{
+  lang = lang==="zh" ? "en" : "zh";
+  localStorage.setItem("l1001",lang);
+  applyLang();
+};
+renderConstel();
+applyLang();
+</script>
+</body>
+</html>
