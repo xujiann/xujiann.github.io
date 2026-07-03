@@ -6,9 +6,18 @@
 <title>1001 × 1001 — 万物收藏 · The Grand Index of 1001s</title>
 <meta name="description" content="1001 个 1001：一座不断生长的收藏之库。书籍、电影、艺术、爵士乐、古典——每一个都是一份 1001 件的珍藏。An ever-growing vault of 1001 collections, each holding 1001 treasures.">
 <meta name="theme-color" content="#0d0b14">
+<meta name="author" content="xujiann">
+<link rel="canonical" href="https://xujiann.github.io/">
 <meta property="og:title" content="1001 × 1001 — 万物收藏">
 <meta property="og:description" content="一座不断生长的收藏之库：书 · 影 · 艺 · 爵士 · 古典。终将抵达 1001 个 1001。">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://xujiann.github.io/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="1001×1001">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80' font-family='Georgia'>❖</text></svg>">
 <style>
   :root{
@@ -78,10 +87,15 @@
   @keyframes rise{from{opacity:0;translate:0 22px}to{opacity:1;translate:0 0}}
   .card::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .4s;
     background:radial-gradient(120% 120% at 100% 0,var(--c,transparent),transparent 55%)}
-  .card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.28);box-shadow:0 24px 50px -24px rgba(0,0,0,.7)}
-  .card:hover::before{opacity:.28}
-  .card:hover .go{transform:translate(3px,-3px);opacity:1}
-  .card:hover .ico{transform:scale(1.06) rotate(-3deg)}
+  @media(hover:hover){
+    .card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.28);box-shadow:0 24px 50px -24px rgba(0,0,0,.7)}
+    .card:hover::before{opacity:.28}
+    .card:hover .go{transform:translate(3px,-3px);opacity:1}
+    .card:hover .ico{transform:scale(1.06) rotate(-3deg)}
+  }
+  /* touch: press feedback, since :hover never fires on tap */
+  .card:active{transform:scale(.98);border-color:rgba(255,255,255,.22);transition-duration:.1s}
+  .card:active::before{opacity:.22}
   .card .row{display:flex;justify-content:space-between;align-items:flex-start}
   .ico{font-size:34px;line-height:1;transition:transform .45s cubic-bezier(.2,.7,.2,1);filter:saturate(1.1)}
   .go{opacity:.35;transition:.35s;color:var(--muted)}
@@ -216,10 +230,10 @@ function renderCards(){
   const grid = document.getElementById("grid");
   grid.classList.toggle("odd", DONE % 2 === 1);
   grid.innerHTML = SITES.map((s,i)=>`
-    <a class="card" href="${s.url}" style="--c:${s.c}33;--c-ink:${s.c};--d:${(i*0.07).toFixed(2)}s">
+    <a class="card" href="${s.url}" aria-label="${s.ttl[lang]} — ${s.sub[lang]}" style="--c:${s.c}33;--c-ink:${s.c};--d:${(i*0.07).toFixed(2)}s">
       <div class="row">
-        <span class="ico">${s.ico}</span>
-        <span class="go">↗</span>
+        <span class="ico" aria-hidden="true">${s.ico}</span>
+        <span class="go" aria-hidden="true">↗</span>
       </div>
       <div class="idx">${String(i+1).padStart(2,"0")} / ${GOAL}</div>
       <div class="cardttl">${s.ttl[lang]}</div>
@@ -268,6 +282,21 @@ if("IntersectionObserver" in window && !reduce){
 
 renderConstel();
 applyLang();
+
+// structured data (SEO) — generated from SITES so it never drifts
+(function(){
+  const ld = {
+    "@context":"https://schema.org","@type":"WebSite",
+    "name":"1001 × 1001 — 万物收藏","url":"https://xujiann.github.io/",
+    "description":"一座不断生长的收藏之库：书 · 影 · 艺 · 爵士 · 古典。终将抵达 1001 个 1001。",
+    "author":{"@type":"Person","name":"xujiann"},
+    "hasPart":SITES.map(s=>({"@type":"CollectionPage","name":s.ttl.zh,"url":s.url}))
+  };
+  const el = document.createElement("script");
+  el.type = "application/ld+json";
+  el.textContent = JSON.stringify(ld);
+  document.head.appendChild(el);
+})();
 </script>
 </body>
 </html>
