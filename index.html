@@ -19,13 +19,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="1001×1001">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80' font-family='Georgia'>❖</text></svg>">
+<!-- prerender a collection on hover so navigating from the hub feels instant (same-origin; unsupported browsers ignore it) -->
+<script type="speculationrules">
+{ "prerender": [ { "where": { "selector_matches": "a.card" }, "eagerness": "moderate" } ] }
+</script>
 <style>
   :root{
     --bg:#0d0b14;
     --bg2:#141020;
     --ink:#f4f0ea;
     --muted:#a09aad;
-    --faint:#5a5468;
+    --faint:#746e85;
     --line:rgba(255,255,255,.10);
     --gold:#d9b26a;
     --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Noto Serif SC",serif;
