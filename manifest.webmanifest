@@ -1,0 +1,15 @@
+{
+  "name": "1001 × 1001 — 万物收藏",
+  "short_name": "1001×1001",
+  "description": "一座不断生长的收藏之库：书 · 影 · 艺 · 爵士 · 古典 · 精酿 · 飞鸟 · 植物 · 户外 · 世界。通往 1001 个 1001。",
+  "lang": "zh-CN",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0d0b14",
+  "theme_color": "#0d0b14",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
